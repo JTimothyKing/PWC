@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-lucky-integer", "1-lucky-integer\1-lucky-integer.csproj", "{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-relative-sort", "2-relative-sort\2-relative-sort.csproj", "{3A170E51-726F-407F-AFD9-2A6AC5D366D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PwcLib", "PwcLib\PwcLib.csproj", "{56C8A1DC-F44A-4306-81D9-FC0F13A156FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A170E51-726F-407F-AFD9-2A6AC5D366D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A170E51-726F-407F-AFD9-2A6AC5D366D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A170E51-726F-407F-AFD9-2A6AC5D366D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A170E51-726F-407F-AFD9-2A6AC5D366D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56C8A1DC-F44A-4306-81D9-FC0F13A156FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C8A1DC-F44A-4306-81D9-FC0F13A156FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C8A1DC-F44A-4306-81D9-FC0F13A156FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C8A1DC-F44A-4306-81D9-FC0F13A156FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
