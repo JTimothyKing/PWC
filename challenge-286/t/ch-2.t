@@ -6,6 +6,8 @@ use Test2::V0;
 use Test2::Tools::Spec;
 
 use FindBin qw($RealBin);
+
+use PwcTask;
 use Path::Tiny;
 
 =head1 NAME
@@ -27,58 +29,16 @@ by Tim King L<https://github.com/JTimothyKing>.
 
 =cut
 
-my $root_dir = path($RealBin)->parent;
-my ($source, $run) = @ARGV;
+my $challenge_dir = path($RealBin)->parent;
+my $run;
 
-before_case initialize_case => sub {
-    $source = undef;
-    $run = undef;
-};
+before_case initialize_case => sub { $run = undef; };
 
-sub run {
-    my $output = qx{@$run @_};
-    chomp $output;
-    return $output;
+my $task = PwcTask->new($challenge_dir, "ch-2");
+for my $case ($task->language_cases) {
+    diag "Adding case for ", $case->name;
+    case $case->name => sub { $run = $case->prepare };
 }
-
-=head1 CASES
-
-=head2 perl
-
-Test the Perl solution for this task.
-
-=cut
-
-case perl => sub {
-    diag "Testing Perl solution";
-    $source = $root_dir->child('perl', 'ch-2.pl');
-    diag "Using source $source";
-    $run = [ 'perl', $source ];
-};
-
-=head2 csharp
-
-Test the C# solution for this task.
-
-=cut
-
-case csharp => sub {
-    diag "Testing C# solution";
-
-    $source = $root_dir->child('csharp', 'ch-2', 'ch-2.cs');
-    diag "Using source $source";
-
-    my $proj = $source->parent->child('ch-2.csproj');
-    diag "Building C# project $proj";
-    system(
-        qw[dotnet build --configuration Release --framework net8.0], $proj
-    ) == 0 or die "Failed to build project $proj";
-
-    my $dll = $source->parent->child(qw[bin Release net8.0 ch-2.dll]);
-    die "Failed to build DLL $dll" unless -f $dll;
-    diag "Using binary $dll";
-    $run = [ qw[dotnet], "$dll" ];
-};
 
 =head1 TESTS
 
@@ -91,11 +51,7 @@ case csharp => sub {
 
 tests example_1 => sub {
     plan(1);
-    is(
-        run(2, 1, 4, 5, 6, 3, 0, 2),
-        1,
-        'Example 1'
-    );
+    is($run->(2, 1, 4, 5, 6, 3, 0, 2), 1, 'Example 1');
 };
 
 =head2 example_2
@@ -107,11 +63,7 @@ tests example_1 => sub {
 
 tests example_2 => sub {
     plan(1);
-    is(
-        run(0, 5, 3, 2),
-        0,
-        'Example 2'
-    );
+    is($run->(0, 5, 3, 2), 0, 'Example 2');
 };
 
 =head2 example_3
@@ -123,11 +75,7 @@ tests example_2 => sub {
 
 tests example_3 => sub {
     plan(1);
-    is(
-        run(9, 2, 1, 4, 5, 6, 0, 7, 3, 1, 3, 5, 7, 9, 0, 8),
-        2,
-        'Example 3'
-    );
+    is($run->(9, 2, 1, 4, 5, 6, 0, 7, 3, 1, 3, 5, 7, 9, 0, 8), 2, 'Example 3');
 };
 
 =head2 empty_list
@@ -139,11 +87,7 @@ tests example_3 => sub {
 
 tests empty_list => sub {
     plan(1);
-    is(
-        run(),
-        '',
-        'Empty list'
-    );
+    is($run->(), '', 'Empty list');
 };
 
 =head2 single_element
@@ -155,11 +99,7 @@ tests empty_list => sub {
 
 tests single_element => sub {
     plan(1);
-    is(
-        run(9),
-        9,
-        'Single element'
-    );
+    is($run->(9), 9, 'Single element');
 };
 
 =head2 two_elements
@@ -171,11 +111,7 @@ tests single_element => sub {
 
 tests two_elements => sub {
     plan(1);
-    is(
-        run(9, 8),
-        8,
-        'Two elements'
-    );
+    is($run->(9, 8), 8, 'Two elements');
 };
 
 =head2 three_elements
@@ -190,11 +126,7 @@ taken itself as a result in that round.
 
 tests three_elements => sub {
     plan(1);
-    is(
-        run(9, 8, 7),
-        7,
-        'Three elements'
-    );
+    is($run->(9, 8, 7), 7, 'Three elements');
 };
 
 =head2 four_elements
@@ -206,11 +138,7 @@ tests three_elements => sub {
 
 tests four_elements => sub {
     plan(1);
-    is(
-        run(9, 8, 7, 6),
-        7,
-        'Four elements'
-    );
+    is($run->(9, 8, 7, 6), 7, 'Four elements');
 };
 
 =head2 six_elements
@@ -225,11 +153,7 @@ should be taken itself as a result in that round.
 
 tests six_elements => sub {
     plan(1);
-    is(
-        run(9, 8, 7, 6, 5, 4),
-        4,
-        'Six elements'
-    );
+    is($run->(9, 8, 7, 6, 5, 4), 4, 'Six elements');
 };
 
 done_testing();
