@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-lucky-integer", "1-lucky-integer\1-lucky-integer.csproj", "{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch-1", "ch-1\ch-1.csproj", "{ECCEB9B2-1ACA-486E-9307-DF18BAC4A92B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-relative-sort", "2-relative-sort\2-relative-sort.csproj", "{3A170E51-726F-407F-AFD9-2A6AC5D366D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch-2", "ch-2\ch-2.csproj", "{3A170E51-726F-407F-AFD9-2A6AC5D366D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PwcLib", "PwcLib\PwcLib.csproj", "{56C8A1DC-F44A-4306-81D9-FC0F13A156FA}"
 EndProject

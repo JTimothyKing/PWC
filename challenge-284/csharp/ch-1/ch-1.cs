@@ -1,8 +1,8 @@
 ﻿using PwcLib;
 
-namespace _1_lucky_integer;
+namespace ch_1;
 
-public static class LuckyInteger
+public static class Ch1
 {
     public static void Main(string[] args)
     {

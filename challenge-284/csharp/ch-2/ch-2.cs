@@ -1,8 +1,8 @@
 ﻿using PwcLib;
 
-namespace _2_relative_sort;
+namespace ch_2;
 
-public static class RelativeSort
+public static class Ch2
 {
     public static void Main(string[] args)
     {

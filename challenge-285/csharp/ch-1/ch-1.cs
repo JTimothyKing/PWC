@@ -1,6 +1,6 @@
-﻿namespace _1_no_connection;
+﻿namespace ch_1;
 
-public static class NoConnection
+public static class Ch1
 {
     public static async Task Main()
     {

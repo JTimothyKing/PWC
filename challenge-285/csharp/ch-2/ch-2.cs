@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
 
-namespace _2_making_change;
+namespace ch_2;
 
-public static class MakingChange
+public static class Ch2
 {
     private static readonly int[] Coins = [1, 5, 10, 25, 50];
     private static readonly ConcurrentDictionary<ChangeKey, Task<int>> NumWaysTasks = new();

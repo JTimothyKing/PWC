@@ -42,9 +42,6 @@ without affecting other projects.
 
 ## Running the Tests
 
-(Some early solutions use a `test.pl` script to test the solutions.
-These will be refactored to use `.t` tests, which can be run as below.)
-
 Each challenge's solution has a corresponding `.t` file in the `t`
 directory, which contains tests for the solution. This file can be run
 directly, using `perl`, or can be run using `yath` or `prove`.

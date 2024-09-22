@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1-no-connection", "1-no-connection\1-no-connection.csproj", "{F1D87F95-5749-4FAB-AC42-7E6B523FFBC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch-1", "ch-1\ch-1.csproj", "{F1D87F95-5749-4FAB-AC42-7E6B523FFBC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2-making-change", "2-making-change\2-making-change.csproj", "{5FCA4CB8-2F12-4348-871D-036465C5D2ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ch-2", "ch-2\ch-2.csproj", "{5FCA4CB8-2F12-4348-871D-036465C5D2ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

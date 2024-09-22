@@ -79,7 +79,6 @@ tests random_word => sub {
     diag "Running program $num_iterations times";
     for my $iter_num (1 .. $num_iterations) {
         my $output = $run->();
-        chomp $output;
         ok(exists $words_seen{$output}, "Word '$output' is in the source, iteration $iter_num");
         $words_seen{$output}++;
     }
