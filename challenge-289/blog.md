@@ -192,6 +192,102 @@ it. If I were writing this code as part of a library, I would have done
 so, but for this example, returning `IEnumerable` and using the built-in
 implementation was easier and sufficient.)
 
+### Another Optimization
+
+It later occurred to me that because it sorts the incoming integers, the
+above algorithm runs in _O_(_n_ log _n_) time. We could speed it up,
+running in _O_(_n_) time, which might be better for very large _n_. Let
+me explain…
+
+Rather than sort the incoming integers, we can use an algorithm like the
+traditional `max`, usually something like:
+
+```perl5
+sub max {
+    my $max = shift;
+    for (@_) {
+        $max = $_ if $_ > $max;
+    }
+    return $max;
+}
+```
+
+This runs in _O_(_n_) time because it only has to traverse the list
+once, rather than to sort the list. Well, we can do the same thing,
+pulling off three unique maximums rather than just one.
+
+Here's what I came up with.
+
+In Perl…
+
+```perl5
+my @max_ints = max3(@ARGV);
+say $max_ints[2] // $max_ints[0];
+
+sub max3 {
+    my $num_max_ints = 3;
+    my @max_ints;
+
+    my sub insert_if_new_max {
+        my $int = shift;
+        for my $i (0 .. $num_max_ints - 1) {
+            last if $int == $max_ints[$i];
+            next if (defined $max_ints[$i] && $int < $max_ints[$i]);
+            splice @max_ints, $i, 0, $int;
+            pop @max_ints if @max_ints > $num_max_ints;
+            last;
+        }
+    }
+
+    insert_if_new_max($_) for (@_);
+    return @max_ints;
+}
+```
+
+The `max3` function loops through all the integers just once. For each
+integer, it figures out whether it is bigger than any of the already
+found maximums, inserting it if so. It also bails out if the integer was
+already found. Note that the inner loop, inside of `insert_if_new_max`,
+runs in constant time, so it does not add to the overall time
+complexity.
+
+A C# implementation is similar:
+
+```csharp
+private static void PrintThirdMax_impl2(string[] args)
+{
+    var firstThree = args.Select(int.Parse).Max3().ToArray();
+    Console.WriteLine(
+        firstThree.Length >= 3 ? firstThree[2] :
+        firstThree.Length > 0 ? firstThree[0] :
+        ""
+    );
+}
+
+private static IEnumerable<T> Max3<T>(this IEnumerable<T> source)
+{
+    const int numMaxValues = 3;
+    var comparer = Comparer<T>.Default;
+    var maxValues = new List<T>();
+    foreach (var value in source) InsertIfNewMax(value);
+    return maxValues;
+
+    void InsertIfNewMax(T value)
+    {
+        for (var i = 0; i < numMaxValues; i++)
+        {
+            if (i < maxValues.Count && comparer.Compare(value, maxValues[i]) == 0) break;
+            if (i < maxValues.Count && comparer.Compare(value, maxValues[i]) <= 0) continue;
+            maxValues.Insert(i, value);
+            if (maxValues.Count > numMaxValues) maxValues.RemoveAt(numMaxValues);
+            break;
+        }
+    }
+}
+```
+
+This operates exactly as the Perl implementation above.
+
 ## Task 2: Jumbled Letters
 
 Write a program that takes English text as its input and outputs a
