@@ -1,5 +1,6 @@
 # Quines are boring, but generative AI still can't do my job
 
+_© 2024 Tim King CC BY-NC_<br />
 _Length: about 2,000 words and 150 lines of code._
 
 ## Task 1: Self Spammer
