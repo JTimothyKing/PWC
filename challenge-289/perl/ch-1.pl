@@ -25,8 +25,11 @@ sub max3 {
     my sub insert_if_new_max {
         my $int = shift;
         for my $i (0 .. $num_max_ints - 1) {
-            last if $int == $max_ints[$i];
-            next if (defined $max_ints[$i] && $int < $max_ints[$i]);
+            if (defined $max_ints[$i]) {
+                last if $int == $max_ints[$i];
+                next if $int < $max_ints[$i];
+            }
+
             splice @max_ints, $i, 0, $int;
             pop @max_ints if @max_ints > $num_max_ints;
             last;

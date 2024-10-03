@@ -59,8 +59,13 @@ public static class Ch1
         {
             for (var i = 0; i < numMaxValues; i++)
             {
-                if (i < maxValues.Count && comparer.Compare(value, maxValues[i]) == 0) break;
-                if (i < maxValues.Count && comparer.Compare(value, maxValues[i]) <= 0) continue;
+                if (i < maxValues.Count)
+                {
+                    var compareResult = comparer.Compare(value, maxValues[i]);
+                        if (compareResult == 0) break;
+                    if (compareResult < 0) continue;
+                }
+
                 maxValues.Insert(i, value);
                 if (maxValues.Count > numMaxValues) maxValues.RemoveAt(numMaxValues);
                 break;
