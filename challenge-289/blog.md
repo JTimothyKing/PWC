@@ -1,7 +1,7 @@
 # Functional Solutions
 
 _© 2024 Tim King CC BY-NC_<br />
-_Length: about 1,500 words and 60 lines of code._
+_Length: about 2,000 words and 120 lines of code._
 
 The last couple of weeks have been a little crazy at my day job and in
 my personal life (which is a whole other story), so I didn't have much
