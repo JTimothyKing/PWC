@@ -57,7 +57,7 @@ code is sometimes clearer and more concise, in specific cases. But in
 most cases, functional code eases testing, is often more modular, and
 avoids concurrency issues.
 
-I tend toward a mix of functional and procedural styles. usually don't
+I tend toward a mix of functional and procedural styles. I usually don't
 unit-test functional methods because there are no branches or state to
 test, and the tests usually turn out to be trivial and thus useless. (I
 _do_ recommend integration tests for this code, however.)
@@ -134,11 +134,11 @@ of is. But I'll let it slide because we're only choosing which value to
 use, not performing different steps based on the conditions.
 
 The sharp-eyed observer will notice that we're selecting between two
-different types of values: `firstThree[n]` is of type `int`, while `""`
-is of type `string`. How can we return two different types from the
-ternary operator? The answer is that `Console.WriteLine` takes an
-`object?` as a parameter, and both the `int` and the `string` are
-implicitly upcast to `object?`, and _that_ is what the ternary
+different types of values: `firstThree[n]` is of type `int`, while the
+empty string `""` is of type `string`. How can we return two different
+types from the ternary operator? The answer is that `Console.WriteLine`
+takes an `object?` as a parameter, and both the `int` and the `string`
+are implicitly upcast to `object?`, and _that_ is what the ternary
 expression operates on.
 
 There's a little optimization we can add to this C# code. The `Distinct`
