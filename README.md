@@ -27,6 +27,7 @@ scripts. A `blog.md` file contains a write-up of the solution.
 - The Perl solutions require a sufficiently recent Perl interpreter,
   plus any CPAN modules that they use.
 - The C# solutions require the .NET SDK.
+- The Python solutions require a Python interpreter.
 
 I recommend using [perlbrew](https://perlbrew.pl/) to install and use an
 appropriate version of Perl. These projects require at least Perl 5.38.
@@ -39,6 +40,10 @@ the [.NET SDK](https://dotnet.microsoft.com/download) installed. These
 projects use .NET 8.0. Multiple versions of the SDK are installed
 side-by-side on the same machine, so you can install the latest version
 without affecting other projects.
+
+The Python solutions use Python 3.12. To run the automated tests, a
+virtual Python environment should be put in `.venv` off of the
+repository root.
 
 ## Running the Tests
 

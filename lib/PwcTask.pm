@@ -80,6 +80,17 @@ package PwcTask::Case {
             }
         }
 
+        if ($lang eq 'python') {
+            my $pydir = $dir->child($lang);
+            my $py = $pydir->child("$task_name.py");
+            return undef unless $py->exists;
+            return sub {
+                diag "Using Python source $py";
+                my $python3 = $dir->parent->child('.venv', 'bin', 'python3');
+                return PwcTask::Run->new($python3, $py);
+            };
+        }
+
         return undef;
     }
 }
