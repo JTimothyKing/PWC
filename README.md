@@ -50,3 +50,42 @@ repository root.
 Each challenge's solution has a corresponding `.t` file in the `t`
 directory, which contains tests for the solution. This file can be run
 directly, using `perl`, or can be run using `yath` or `prove`.
+
+To run all the tests, from the repository root:
+
+yath */t/*.t
+
+To run the tests for a specific challenge, from the repository root:
+
+yath challenge-xxx/t/*.t
+
+## Adding a New Challenge
+
+To add a new challenge directory and tests:
+
+1. **Create the challenge directory:**
+    - Name it `challenge-xxx`, where `xxx` is the challenge number.
+    - Inside, create subdirectories for each language you want to implement (e.g., `perl/`, `python/`, `csharp/`), and a
+      `t/` directory for tests. (Only the language directories you plan to use are needed; you can add more later if you
+      want.)
+
+2. **Create a new test file:**
+    - Use the provided script to generate a boilerplate test:
+
+      ```sh
+      perl tools/new_test.pl challenge-xxx ch-1
+      ```
+        - Replace `challenge-xxx` with your challenge directory and `ch-1` with your task ID (e.g., `ch-2`).
+        - The script will create `challenge-xxx/t/ch-1.t` with a template for you to fill in.
+
+3. **Add solution implementations:**
+    - For Perl: Add your solution as `challenge-xxx/perl/ch-1.pl` (or `ch-2.pl`).
+    - For Python: Add your solution as `challenge-xxx/python/ch-1.py` (or `ch-2.py`).
+    - For C#: Add your solution as `challenge-xxx/csharp/ch-1/ch-1.csproj` (or `ch-2/ch-2.csproj`) and your code as
+      `challenge-xxx/csharp/ch-1/ch-1.cs` (or `ch-2/ch-2.cs`). You may also want to create a solution file in the
+      `csharp` directory to include the new project, but it isn't required for the tests to run.
+
+4. **Edit the test file:**
+    - Fill in the test template with input/output examples and test logic.
+    - Tests are run using `yath`, `prove`, or directly with `perl`, as described in the "Running the Tests" section
+      above.
