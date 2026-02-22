@@ -125,8 +125,13 @@ package PwcTask::Run {
             my $cmd = $self->{cmd};
             my $stdin = $self->{stdin};
             my $output;
-            if (defined $stdin) { $output = qx{echo "$stdin" | @$cmd @args}; }
-            else { $output = qx{@$cmd @args}; }
+            if (defined $stdin) {
+                my $tmp = Path::Tiny->tempfile;
+                $tmp->spew($stdin);
+                $output = qx{@$cmd @args < $tmp};
+            } else {
+                $output = qx{@$cmd @args};
+            }
             chomp $output;
             return $output;
         }
