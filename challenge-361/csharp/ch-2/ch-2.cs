@@ -20,21 +20,15 @@ public static class Ch2
 
         // Phase 1: find the candidate.
         // If A knows B, A is not the celebrity. If A doesn't know B, B is not the celebrity.
-        var candidate = 0;
-        for (var i = 1; i < n; i++)
-            if (party[candidate][i] == 1)
-                candidate = i;
+        var candidate = Enumerable.Range(0, n)
+            .Aggregate((a, b) => party[a][b] == 1 ? b : a);
 
         // Phase 2: verify the candidate.
-        for (var i = 0; i < n; i++)
-        {
-            if (i == candidate) continue;
-            // The candidate must not know i, and i must know the candidate.
-            if (party[candidate][i] == 1 || party[i][candidate] == 0)
-                return -1;
-        }
+        // The candidate must not know anyone, and everyone must know the candidate.
+        var valid = Enumerable.Range(0, n)
+            .All(i => i == candidate || (party[candidate][i] == 0 && party[i][candidate] == 1));
 
-        return candidate;
+        return valid ? candidate : -1;
     }
 }
 
